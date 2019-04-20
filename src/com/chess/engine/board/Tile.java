@@ -15,20 +15,23 @@ public abstract class Tile {
     //try use x,Y
     protected  final IndexTile tileCoordination ;
 
-    /**
-     *
-     * @param X index x-axis on the board
-     * @param Y index y-axis on the board
-     */
+//
+//    private Tile(int X, int Y){
+//        tileCoordination =new IndexTile(X,Y);
+//        //    tileCoordinate_X=X;
+//        //    tileCoordinate_Y =Y;
+//    }
 
-    private Tile(int X, int Y){
-        tileCoordination =new IndexTile(X,Y);
+    private Tile(final IndexTile tileCoordination){
+        this.tileCoordination = tileCoordination;
         //    tileCoordinate_X=X;
         //    tileCoordinate_Y =Y;
     }
 
+
+
 //map include empty tile
-    private static final Map<IndexTile ,EmptyTile> EMPTY_TILES =   createAllPossibleEmptyTiles();
+    private static final Map<IndexTile ,EmptyTile> EMPTY_TILES_CACHE =   createAllPossibleEmptyTiles();
 
     private static Map<IndexTile, EmptyTile> createAllPossibleEmptyTiles() {
 
@@ -36,19 +39,23 @@ public abstract class Tile {
 
         final Map<IndexTile,EmptyTile> emptyTileMap= new HashMap<>();
 
-        for(int x=0 ; x<8 ; x++ ){
-            for(int y=0 ; y<8 ; y++ ) {
-                emptyTileMap.put(new IndexTile(x,y),new EmptyTile(x,y));
+        for(int x=0 ; x<BoardUtils.NUM_TILE_PER_ROW ; x++ ){
+            for(int y=0 ; y<BoardUtils.NUM_TILE_PER_COLUMN ; y++ ) {
+                IndexTile indexTile= new IndexTile(x,y);
+                emptyTileMap.put( indexTile,new EmptyTile(indexTile));
             }
-
         }
         return ImmutableMap.copyOf(emptyTileMap);
     }
 
 
 
-    public static Tile createTile(final int tileCoordinate_X,final int tileCoordinate_Y,final Piece piece){
-        return piece!= null ?new OccupiedTile(tileCoordinate_X,tileCoordinate_Y,piece) :EMPTY_TILES.get(new IndexTile(tileCoordinate_X,tileCoordinate_Y));
+//    public static Tile createTile(final int tileCoordinate_X,final int tileCoordinate_Y,final Piece piece){
+//        return piece!= null ?new OccupiedTile(tileCoordinate_X,tileCoordinate_Y,piece) : EMPTY_TILES_CACHE.get(new IndexTile(tileCoordinate_X,tileCoordinate_Y));
+//    }
+
+    public static Tile createTile(final IndexTile tileCoordination ,final Piece piece){
+        return piece!= null ?new OccupiedTile(tileCoordination,piece) : EMPTY_TILES_CACHE.get(tileCoordination);
     }
 
 
@@ -64,8 +71,8 @@ public abstract class Tile {
      *  Static Nested Classes
      */
     public static final class  EmptyTile extends Tile {
-        EmptyTile( final int X, final int Y ){
-            super(X,Y);
+        private EmptyTile( final IndexTile indexTile ){
+            super(indexTile);
         }
 
         @Override
@@ -88,8 +95,8 @@ public abstract class Tile {
 
         private final Piece pieceOnTile ;
 
-        OccupiedTile(int X, int Y ,  Piece pieceOnTile ){
-            super(X,Y);
+        private OccupiedTile(IndexTile indexTile,final   Piece pieceOnTile ){
+            super(indexTile);
             this.pieceOnTile = pieceOnTile ;
         }
 
@@ -108,22 +115,8 @@ public abstract class Tile {
     }
 
 
+
+
+
 }
 
-/**
- * to use it in map
- */
-
-
-class IndexTile{
-    //hhhh
-    int xxxx;
-
-    protected  final  int tileCoordinate_X;
-    protected  final  int tileCoordinate_Y;
-
-    public IndexTile(int tileCoordinate_X, int tileCoordinate_Y) {
-        this.tileCoordinate_X = tileCoordinate_X;
-        this.tileCoordinate_Y = tileCoordinate_Y;
-    }
-}
