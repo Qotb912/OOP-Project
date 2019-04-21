@@ -20,11 +20,11 @@ public  class IndexTile{
 
 
     // postion on x-axis (in the real word (a->h)
-    protected  final  int tileCoordinate_X;
+    private     int tileCoordinate_X;
     //position on the y-axis
-    protected  final  int tileCoordinate_Y;
+    private     int tileCoordinate_Y;
 
-
+    public IndexTile (){};
 
     //constructor put (x,y)
     public IndexTile(int tileCoordinate_X, int tileCoordinate_Y) {
@@ -32,12 +32,23 @@ public  class IndexTile{
         this.tileCoordinate_Y = tileCoordinate_Y;
     }
 
-    //constructor take Indextile
+    //constructor take Index tile
     public IndexTile (IndexTile indexTile){
-        tileCoordinate_X  =this.getTileCoordinate_X()+ indexTile.getTileCoordinate_X();
-        tileCoordinate_Y = this.getTileCoordinate_Y()+indexTile.getTileCoordinate_Y();
+        tileCoordinate_X  = indexTile.getTileCoordinate_X();
+        tileCoordinate_Y  = indexTile.getTileCoordinate_Y();
     }
 
+    //to move it to new position
+    public void moveTOPosition (IndexTile indexTile){
+        tileCoordinate_Y =indexTile.getTileCoordinate_Y();
+        tileCoordinate_X = indexTile.getTileCoordinate_X();
+    }
+
+    // to add (x,Y) to it's position
+    public void addIndexTile(IndexTile indexTile){
+        tileCoordinate_X  += indexTile.getTileCoordinate_X();
+        tileCoordinate_Y += indexTile.getTileCoordinate_Y();
+    }
 
     //to check object equal to this one
     public boolean equal(IndexTile indexTile){
