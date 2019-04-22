@@ -16,7 +16,7 @@ public class Bishop extends Piece {
 
 
 
-    public Bishop(IndexTile piecePosition, Alliance pieceAlliance) {
+    public Bishop(final IndexTile piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 

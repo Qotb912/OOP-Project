@@ -50,6 +50,21 @@ public  class IndexTile{
         tileCoordinate_Y += indexTile.getTileCoordinate_Y();
     }
 
+    public void multiply_Y(int number){
+        tileCoordinate_Y *= number ;
+    }
+
+
+//    public void multiply_IndexTile(int number){
+//        tileCoordinate_X *=number ;
+//        tileCoordinate_Y *=number ;
+//    }
+
+//    public void multiply_X(int number){
+//        tileCoordinate_X *=number ;
+//    }
+
+
     //to check object equal to this one
     public boolean equal(IndexTile indexTile){
         boolean equal=true;

@@ -15,7 +15,7 @@ public class Rook extends Piece {
 
 
 
-    public Rook(IndexTile piecePosition, Alliance pieceAlliance) {
+    public Rook(final IndexTile piecePosition,final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 

@@ -13,7 +13,7 @@ public class Queen extends Piece {
     private final static IndexTile [] CANDIDATE_MOVE_VECTOR_COORDINATES ={ new IndexTile (0,1) ,new IndexTile (0,-1) , new IndexTile(1,0) ,new IndexTile (-1,0) , new IndexTile (-1,-1) ,new IndexTile (-1,1) , new IndexTile(1,-1) ,new IndexTile (1,1) };
 
 
-    public Queen(IndexTile piecePosition, Alliance pieceAlliance) {
+    public Queen( final IndexTile piecePosition,final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
