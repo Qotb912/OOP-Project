@@ -26,23 +26,28 @@ public abstract class Tile {
         this.tileCoordination = tileCoordination;
         //    tileCoordinate_X=X;
         //    tileCoordinate_Y =Y;
+
+        //EMPTY_TILES_CACHE =   createAllPossibleEmptyTiles();
     }
 
 
 
 //map include empty tile
-    private static final Map<IndexTile ,EmptyTile> EMPTY_TILES_CACHE =   createAllPossibleEmptyTiles();
 
-    private static Map<IndexTile, EmptyTile> createAllPossibleEmptyTiles() {
+        private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
+
+//private static final Map<Integer ,EmptyTile> EMPTY_TILES_CACHE ;
+
+    private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
 
         //final IndexTile indexTile ;
 
-        final Map<IndexTile,EmptyTile> emptyTileMap= new HashMap<>();
+        final Map<Integer,EmptyTile> emptyTileMap= new HashMap<>();
 
         for(int x=0 ; x<BoardUtils.NUM_TILE_PER_ROW ; x++ ){
             for(int y=0 ; y<BoardUtils.NUM_TILE_PER_COLUMN ; y++ ) {
                 IndexTile indexTile= new IndexTile(x,y);
-                emptyTileMap.put( indexTile,new EmptyTile(indexTile));
+                emptyTileMap.put( 8*x+y,new EmptyTile(indexTile));
             }
         }
         return ImmutableMap.copyOf(emptyTileMap);
@@ -50,12 +55,10 @@ public abstract class Tile {
 
 
 
-//    public static Tile createTile(final int tileCoordinate_X,final int tileCoordinate_Y,final Piece piece){
-//        return piece!= null ?new OccupiedTile(tileCoordinate_X,tileCoordinate_Y,piece) : EMPTY_TILES_CACHE.get(new IndexTile(tileCoordinate_X,tileCoordinate_Y));
-//    }
 
-    public static Tile createTile(final IndexTile tileCoordination ,final Piece piece){
-        return piece!= null ?new OccupiedTile(tileCoordination,piece) : EMPTY_TILES_CACHE.get(tileCoordination);
+    public static Tile  createTile(final IndexTile tileCoordination ,final Piece piece){
+        return piece!= null ?new OccupiedTile(tileCoordination,piece) : EMPTY_TILES_CACHE.get(((tileCoordination.getTileCoordinate_X() * 8)+
+                                                                                    ( tileCoordination.getTileCoordinate_Y() )  ));
     }
 
 
@@ -73,6 +76,13 @@ public abstract class Tile {
     public static final class  EmptyTile extends Tile {
         private EmptyTile( final IndexTile indexTile ){
             super(indexTile);
+        }
+
+
+
+        @Override
+        public String toString(){
+            return "-";
         }
 
         @Override
@@ -100,6 +110,11 @@ public abstract class Tile {
             this.pieceOnTile = pieceOnTile ;
         }
 
+        @Override
+        public String toString(){
+            return getPiece().getPieceAlliance().isBlack() ? getPiece().toString().toLowerCase():
+                    getPiece().toString();
+        }
 
         @Override
         public boolean isTileOccupied() {
