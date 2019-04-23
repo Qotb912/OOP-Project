@@ -15,7 +15,7 @@ public class King extends Piece {
             ,new IndexTile (-1,0) , new IndexTile (-1,-1) ,new IndexTile (-1,1) , new IndexTile(1,-1) ,new IndexTile (1,1) };
 
 
-    public King(IndexTile piecePosition, Alliance pieceAlliance) {
+    public King(final IndexTile piecePosition,final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -46,4 +46,13 @@ public class King extends Piece {
 
         return ImmutableList.copyOf(legalMoves);
     }
+
+
+
+
+    @Override
+    public String toString() {
+        return PieceType.KING.toString();
+    }
+
 }

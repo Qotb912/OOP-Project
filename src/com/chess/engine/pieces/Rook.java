@@ -16,8 +16,9 @@ public class Rook extends Piece {
 
 
     public Rook(final IndexTile piecePosition,final Alliance pieceAlliance) {
+
         super(piecePosition, pieceAlliance);
-    }
+     }
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
@@ -57,6 +58,12 @@ public class Rook extends Piece {
 
 
         return ImmutableList.copyOf(legalMoves);
+    }
+
+
+    @Override
+    public String toString() {
+        return PieceType.ROOK.toString();
     }
 
 }

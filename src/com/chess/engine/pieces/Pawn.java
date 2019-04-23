@@ -23,6 +23,7 @@ public class Pawn extends Piece {
 
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {
+
         final List<Move>  legalMoves =new ArrayList<>();
 
         for(final IndexTile currentCandidateOffset : CANDIDATE_MOVE_COORDINATE){
@@ -31,12 +32,10 @@ public class Pawn extends Piece {
             indexTile.multiply_Y(this.pieceAlliance.getDirection());
             indexTile.addIndexTile(this.piecePosition);
             final IndexTile candidateDestinationCoordinate =new IndexTile(indexTile);
-            //candidateDestinationCoordinate.addIndexTile(indexTile);
 
             if(!BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)){
                 continue;
             }
-                //i didn't und it
             if(currentCandidateOffset.equal(new IndexTile(0,1)) && board.getTile(candidateDestinationCoordinate).isTileOccupied()){
                //TODO more here
                 legalMoves.add( new Move.MajorMove(board,this,candidateDestinationCoordinate));
@@ -76,5 +75,12 @@ public class Pawn extends Piece {
 
 
         return ImmutableList.copyOf(legalMoves);
+    }
+
+
+
+    @Override
+    public String toString() {
+        return PieceType.PAWN.toString();
     }
 }

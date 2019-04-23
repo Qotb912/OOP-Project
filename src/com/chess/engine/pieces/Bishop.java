@@ -60,6 +60,10 @@ public class Bishop extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    @Override
+    public String toString() {
+        return PieceType.BISHOP.toString();
+    }
 //
 //// Exclusion : eqsa
 //    private static boolean isFirstColumnExclusion(final IndexTile currentPosition , final IndexTile candidateOffset ){

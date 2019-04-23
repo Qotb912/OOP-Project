@@ -30,21 +30,9 @@ public class Knight extends Piece {
 
             final IndexTile candidateDestinationCoordinates =new IndexTile();
             candidateDestinationCoordinates.addIndexTile(currentCandidateOffset);
-            //candidateDestinationCoordinates = new IndexTile ((this.piecePosition.getTileCoordinate_X()+currentCandidate.getTileCoordinate_X()),(this.piecePosition.getTileCoordinate_Y()+currentCandidate.getTileCoordinate_Y()));
 
             if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinates)) {
 // row from me && column  (conflict here M...Q...)
-
-//                if( isFirstColumnExclusion(this.piecePosition,currentCandidateOffset)    ||
-//                    isSecondColumnExclusion(this.piecePosition,currentCandidateOffset)   ||
-//                    isSeventhColumnExclusion(this.piecePosition,currentCandidateOffset)  ||
-//                    isEighthColumnExclusion(this.piecePosition,currentCandidateOffset)   ||
-//                    isFirstRowExclusion(this.piecePosition,currentCandidateOffset)       ||
-//                    isSecondRowExclusion(this.piecePosition,currentCandidateOffset)      ||
-//                    isSeventhٍRowExclusion(this.piecePosition,currentCandidateOffset)     ||
-//                    isEighthٍRowExclusion(this.piecePosition,currentCandidateOffset)){
-//                    continue;
-//                }
 
 
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinates);
@@ -61,6 +49,13 @@ public class Knight extends Piece {
         }
         return ImmutableList.copyOf(legalMoves);
     }
+
+
+    @Override
+    public String toString() {
+        return PieceType.KNIGHT.toString();
+    }
+
 //
 //    private static boolean isFirstColumnExclusion(final IndexTile currentPosition , final IndexTile candidateOffset ){
 //        return BoardUtils.FIRST_COLUMN[currentPosition.getTileCoordinate_X()][currentPosition.getTileCoordinate_Y()] &&
