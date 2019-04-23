@@ -61,6 +61,13 @@ public class Knight extends Piece {
         }
         return ImmutableList.copyOf(legalMoves);
     }
+
+
+    @Override
+    public String toString() {
+        return PieceType.KNIGHT.toString();
+    }
+
 //
 //    private static boolean isFirstColumnExclusion(final IndexTile currentPosition , final IndexTile candidateOffset ){
 //        return BoardUtils.FIRST_COLUMN[currentPosition.getTileCoordinate_X()][currentPosition.getTileCoordinate_Y()] &&

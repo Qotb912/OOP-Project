@@ -13,10 +13,10 @@ public class BoardUtils {
 
 
 
-    public static boolean[][] FIRST_Row   = null ;
-    public static boolean[][] SECOND_Row  = null ;
-    public static boolean[][] SEVENTH_Row = null ;
-    public static boolean[][] EIGHTH_Row = null ;
+    public static boolean[][] FIRST_Row   = initRow(0) ;
+    public static boolean[][] SECOND_Row  = initRow(1)  ;
+    public static boolean[][] SEVENTH_Row = initRow(6)  ;
+    public static boolean[][] EIGHTH_Row = initRow(7)  ;
 
 
     public static final int NUM_TILE_PER_ROW = 8 ;
@@ -29,24 +29,37 @@ public class BoardUtils {
     private static boolean [][] initColumn(IndexTile object){
         int y =object.getTileCoordinate_Y();
         int x=object.getTileCoordinate_X();
-        final boolean [] [] column =new boolean[NUM_TILE_PER_ROW][NUM_TILE_PER_COLUMN];
+        final boolean [] [] column =new boolean[NUM_TILE_PER_COLUMN][NUM_TILE_PER_ROW];
         do {
             column[x][y]=true;
             y++;
-        }while (y<NUM_TILE_PER_COLUMN);
+        }while (y<NUM_TILE_PER_ROW);
         return column;
     }
 
     private static boolean [][] initColumn(int columnNumber){
 
         int x=columnNumber;
-        final boolean [] [] column =new boolean[NUM_TILE_PER_ROW][NUM_TILE_PER_COLUMN];
+        final boolean [] [] column =new boolean[NUM_TILE_PER_COLUMN][NUM_TILE_PER_ROW];
         do {
-            column[x][columnNumber]=true;
+            column[columnNumber][x]=true;
             columnNumber++;
-        }while (columnNumber<NUM_TILE_PER_COLUMN);
+        }while (columnNumber<NUM_TILE_PER_ROW);
         return column;
     }
+
+    private static boolean [][] initRow(int rowNumber){
+
+        int x=rowNumber;
+        final boolean [] [] row =new boolean[NUM_TILE_PER_COLUMN][NUM_TILE_PER_ROW];
+        do {
+            row[x][rowNumber]=true;
+            rowNumber++;
+        }while (rowNumber<NUM_TILE_PER_COLUMN);
+        return row;
+    }
+
+
 
     public static boolean isValidTileCoordinate(final IndexTile coordinate) {
         return coordinate.getTileCoordinate_Y()>=0 && coordinate.getTileCoordinate_Y()< NUM_TILE_PER_COLUMN &&
