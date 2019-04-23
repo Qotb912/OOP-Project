@@ -15,12 +15,6 @@ public abstract class Tile {
     //try use x,Y
     protected  final IndexTile tileCoordination ;
 
-//
-//    private Tile(int X, int Y){
-//        tileCoordination =new IndexTile(X,Y);
-//        //    tileCoordinate_X=X;
-//        //    tileCoordinate_Y =Y;
-//    }
 
     private Tile(final IndexTile tileCoordination){
         this.tileCoordination = tileCoordination;
@@ -36,11 +30,9 @@ public abstract class Tile {
 
         private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 
-//private static final Map<Integer ,EmptyTile> EMPTY_TILES_CACHE ;
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
 
-        //final IndexTile indexTile ;
 
         final Map<Integer,EmptyTile> emptyTileMap= new HashMap<>();
 
